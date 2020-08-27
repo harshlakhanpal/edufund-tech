@@ -23,10 +23,10 @@ const validateUserRegistration = (name, email, password, confirmPassword) => {
   };
 };
 
-const validateUserLogin = (name, password) => {
+const validateUserLogin = (email, password) => {
   const errors = {};
-  if (name.trim() === "") {
-    errors.name = "Username must not be empty";
+  if (email.trim() === "") {
+    errors.email = "Email field must not be empty";
   }
   if (password.trim() === "") {
     errors.password = "Password must not be empty";

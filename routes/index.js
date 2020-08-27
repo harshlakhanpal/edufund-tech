@@ -53,9 +53,36 @@ router.get("/register", async (req, res) => {
     });
     await user.save();
     const token = jwt.sign({ id: user.id }, "mysecret");
-    return { token, id: user._id, ...user._doc };
+    res.json({ token, id: user._id, ...user._doc });
   } catch (err) {
-    throw err;
+    res.json({ error: err });
+  }
+});
+
+router.get("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const { errors, valid } = validateUserLogin(email, password);
+    if (!valid) {
+      throw new Error("Errors", { errors });
+    }
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      errors.general = "User not found";
+      throw new Error("User not found", { errors });
+    }
+
+    const matchPassword = await bcrypt.compare(password, user.password);
+    if (!matchPassword) {
+      errors.general = "Wrong Credentials";
+      throw new Error("Wrong Credentials", { errors });
+    }
+
+    const token = jwt.sign({ id: user.id }, "mysecret");
+    res.json({ token, id: user._id, ...user._doc });
+  } catch (err) {
+    res.json({ error: err });
   }
 });
 
