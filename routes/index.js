@@ -7,6 +7,7 @@ const {
   validateUserRegistration,
   validateUserLogin,
 } = require("../utils/validations.js");
+const authCheck = require("../util/auth");
 
 router.get("/", (req, res) => res.send("Test"));
 
