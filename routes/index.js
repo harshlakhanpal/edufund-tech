@@ -3,15 +3,16 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
+const Survey = require("../models/survey");
 const {
   validateUserRegistration,
   validateUserLogin,
 } = require("../utils/validations.js");
-const authCheck = require("../util/auth");
+const authCheck = require("../utils/auth");
 
 router.get("/", (req, res) => res.send("Test"));
 
-router.get("/register", async (req, res) => {
+router.get("/auth/register", async (req, res) => {
   try {
     const {
       name,
@@ -60,7 +61,7 @@ router.get("/register", async (req, res) => {
   }
 });
 
-router.get("/login", async (req, res) => {
+router.get("/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const { errors, valid } = validateUserLogin(email, password);
@@ -82,6 +83,44 @@ router.get("/login", async (req, res) => {
 
     const token = jwt.sign({ id: user.id }, "mysecret");
     res.json({ token, id: user._id, ...user._doc });
+  } catch (err) {
+    res.json({ error: err });
+  }
+});
+
+router.post("/api/survey", async (req, res) => {
+  const { body, headers } = req;
+
+  const { id } = authCheck(headers.authorization);
+  try {
+    const user = await User.findById(id);
+    console.log(user);
+    const newSurvey = new Survey({
+      ...body,
+      user: user.id,
+      username: user.name,
+      createdAt: new Date().toISOString(),
+    });
+    const survey = await newSurvey.save();
+    res.json({ survey });
+  } catch (err) {
+    res.json({ error: err });
+  }
+});
+
+router.get("/api/surveys", async (req, res) => {
+  const { body, headers } = req;
+
+  const { id } = authCheck(headers.authorization);
+  try {
+    const user = await User.findById(id);
+    console.log(user);
+
+    const surveys = await Survey.find({ "responses.userId": { $ne: user.id } });
+    //  const surveys = await Survey.find();
+
+    console.log(surveys.length);
+    res.json({ surveys });
   } catch (err) {
     res.json({ error: err });
   }
