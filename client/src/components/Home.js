@@ -19,6 +19,7 @@ const Home = () => {
       const { data } = await axios.get("http://localhost:5000/api/surveys", {
         headers: { authorization: localStorage.getItem("token") },
       });
+
       console.log(data);
       setSurveys(data);
     } catch (err) {
