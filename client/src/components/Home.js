@@ -24,26 +24,38 @@ const Home = () => {
 
   return (
     <section className="home">
-      {surveys.map(({ username, subject, createdAt, _id }) => (
-        <div className="card">
-          <div className="info">
-            <p style={{ fontSize: "1.65rem", padding: "1.3rem" }}>{subject}</p>
+      {surveys.length > 0 ? (
+        surveys.map(({ username, subject, createdAt, _id }) => (
+          <div className="card">
+            <div className="info">
+              <p style={{ fontSize: "1.65rem", padding: "1.3rem" }}>
+                {subject}
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "1rem",
+                }}
+              >
+                <p>{username}</p>
+                <p>{moment(createdAt).fromNow()}</p>
+              </div>
+            </div>
             <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "1rem",
-              }}
+              className="action"
+              onClick={() => history.push(`/home/${_id}`)}
             >
-              <p>{username}</p>
-              <p>{moment(createdAt).fromNow()}</p>
+              <img src={viewArrow} alt="View post" className="icon" />
             </div>
           </div>
-          <div className="action" onClick={() => history.push(`/home/${_id}`)}>
-            <img src={viewArrow} alt="View post" className="icon" />
-          </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <h1 style={{ textAlign: "center" }}>
+          {" "}
+          No more surveys left for you to respond to.
+        </h1>
+      )}
     </section>
   );
 };

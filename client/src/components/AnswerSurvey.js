@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { setLoading } from "../store/app/actions";
 
 const AnswerSurvey = () => {
   const [survey, setSurvey] = useState({});
+  const dispatch = useDispatch();
   const history = useHistory();
   let { id } = useParams();
   const [body, setBody] = useState("");
@@ -14,10 +17,7 @@ const AnswerSurvey = () => {
   };
 
   const fetchSurvey = async () => {
-    const { data } = await axios.get(
-      `http://localhost:5000/api/survey/${id}`,
-      {}
-    );
+    const { data } = await axios.get(`http://localhost:5000/api/survey/${id}`);
     console.log(data);
     setSurvey(data);
   };
@@ -26,13 +26,22 @@ const AnswerSurvey = () => {
   }, []);
 
   const handleResponse = async () => {
-    const username = JSON.parse(localStorage.getItem("user")).name;
+    const userId = JSON.parse(localStorage.getItem("user"))._id;
     survey.responses.unshift({
       body,
-      username,
+      userId,
       createdAt: new Date().toISOString(),
     });
+    dispatch(setLoading());
 
+    try {
+      await axios.put(`http://localhost:5000/api/survey/${id}`, { ...survey });
+      setTimeout(() => history.push("/home"), 500);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      dispatch(setLoading());
+    }
     console.log(survey);
   };
 
