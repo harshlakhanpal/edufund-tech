@@ -7,14 +7,12 @@ const Footer = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const user = useSelector((state) => state.app.user);
-  const checkLoggedIn =
-    user.isCoordinator ||
-    JSON.parse(localStorage.getItem("user")).isCoordinator;
+  const user = JSON.parse(localStorage.getItem("user")) || {};
+  const checkCoordinator = user ? user.isCoordinator : false;
 
   return (
     <>
-      {checkLoggedIn ? (
+      {checkCoordinator ? (
         location.pathname !== "/home/create_survey" ? (
           <div
             className="footer"

@@ -10,6 +10,7 @@ import Drawer from "./components/Drawer";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Loader from "./components/Loader";
+import CreateSurvey from "./components/CreateSurvey";
 import Register from "./components/Register";
 import PageNotFound from "./components/PageNotFound";
 import PrivateRoute from "./components/PrivateRoute";
@@ -31,12 +32,18 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/home" component={Home} />
+          <PrivateRoute
+            exact
+            path="/home/create_survey"
+            component={CreateSurvey}
+          />
+
           <PrivateRoute exact path="/home/:id" component={AnswerSurvey} />
 
           <PageNotFound />
         </Switch>
       </div>
-      {/* <Footer /> */}
+      <Footer />
       <ToastContainer
         style={{
           textAlign: "center",
