@@ -17,7 +17,7 @@ const CreateSurvey = () => {
         "http://localhost:5000/api/survey",
         { subject },
         {
-          headers: { authorization: localStorage.getItem("token") },
+          headers: { authorization: JSON.parse(localStorage.getItem("token")) },
         }
       );
       console.log(data);

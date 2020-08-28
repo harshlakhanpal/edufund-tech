@@ -17,7 +17,7 @@ const Home = () => {
     dispatch(setLoading());
     try {
       const { data } = await axios.get("http://localhost:5000/api/surveys", {
-        headers: { authorization: localStorage.getItem("token") },
+        headers: { authorization: JSON.parse(localStorage.getItem("token")) },
       });
 
       console.log(data);
@@ -34,6 +34,7 @@ const Home = () => {
 
   return (
     <section className="home">
+      <h1 style={{ textAlign: "center" }}>Surveys you are eligible for</h1>
       {surveys.length > 0 ? (
         surveys.map(({ username, subject, createdAt, _id }) => (
           <div className="card">
@@ -61,7 +62,7 @@ const Home = () => {
           </div>
         ))
       ) : (
-        <h1 style={{ textAlign: "center" }}>
+        <h1 style={{ textAlign: "center", marginTop: "1rem" }}>
           {" "}
           No more surveys left for you to respond to.
         </h1>

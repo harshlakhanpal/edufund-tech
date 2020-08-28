@@ -126,23 +126,23 @@ router.put("/api/survey/:id", async (req, res) => {
   }
 });
 
-// router.get("/api/surveys", async (req, res) => {
-//   const { body, headers } = req;
+router.get("/api/mysurveys", async (req, res) => {
+  const { headers } = req;
 
-//   const { id } = authCheck(headers.authorization);
-//   try {
-//     const user = await User.findById(id);
-//     console.log(user);
+  const { id } = authCheck(headers.authorization);
+  try {
+    const user = User.findById(id);
+    console.log(user);
 
-//     const surveys = await Survey.find({ "responses.userId": { $ne: user.id } });
-//     //  const surveys = await Survey.find();
+    const surveys = await Survey.find({ user: id });
+    //  const surveys = await Survey.find();
 
-//     console.log(surveys.length);
-//     res.json(surveys);
-//   } catch (err) {
-//     res.json({ error: err });
-//   }
-// });
+    console.log(surveys.length);
+    res.json(surveys);
+  } catch (err) {
+    res.json({ error: err });
+  }
+});
 
 router.get("/api/surveys", async (req, res) => {
   const { body, headers } = req;
