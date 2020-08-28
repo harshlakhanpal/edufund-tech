@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.scss";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Landing from "./components/Landing";
+import Drawer from "./components/Drawer";
+// import Home from "./components/Home";
+// import Login from "./components/Login";
+// import Register from "./components/Register";
+import PageNotFound from "./components/PageNotFound";
+// import PrivateRoute from "./components/PrivateRoute";
+import { Switch, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      <Drawer />
+
+      <div className="content">
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          {/* <Route exact path="/login" component={Login} /> */}
+          {/* <Route exact path="/register" component={Register} /> */}
+          {/* <PrivateRoute exact path="/home" component={Home} /> */}
+
+          <PageNotFound />
+        </Switch>
+      </div>
+      <Footer />
+      <ToastContainer
+        style={{
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      />
     </div>
   );
-}
+};
 
 export default App;
