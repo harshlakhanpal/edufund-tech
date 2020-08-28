@@ -135,6 +135,21 @@ html body #root {
     background: #4265e2;
     align-items: center;
   }
+  .mysurveys {
+    position: sticky;
+    width: 12%;
+    display: flex;
+    justify-content: center;
+    /* left: 0%; */
+    align-self: flex-end;
+    /* bottom: 6%; */
+    border-radius: 50%;
+    min-height: 6%;
+    background: #4265e2;
+    align-items: center;
+    text-align: center;
+    word-break: break-word;
+  }
 }
 
 .neumorphic-inset {

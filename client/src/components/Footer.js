@@ -14,14 +14,38 @@ const Footer = () => {
     <>
       {checkCoordinator ? (
         location.pathname !== "/home/create_survey" ? (
-          <div
-            className="footer"
-            onClick={() => history.push("/home/create_survey")}
-          >
-            Create a new Survey
-          </div>
+          <>
+            <div
+              className="mysurveys"
+              onClick={() =>
+                location.pathname !== "/home/mysurveys"
+                  ? history.push("/home/mysurveys")
+                  : null
+              }
+            >
+              My Surveys
+            </div>
+            <div
+              className="footer"
+              onClick={() => history.push("/home/create_survey")}
+            >
+              Create a new Survey
+            </div>
+          </>
         ) : (
-          <div className="footer">Create a new Survey</div>
+          <>
+            <div
+              className="mysurveys"
+              onClick={() =>
+                location.pathname !== "/home/mysurveys"
+                  ? history.push("/home/mysurveys")
+                  : null
+              }
+            >
+              My <br /> Surveys
+            </div>
+            <div className="footer">Create a new Survey</div>
+          </>
         )
       ) : null}
     </>
