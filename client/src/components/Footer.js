@@ -7,36 +7,23 @@ const Footer = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const loggedIn = useSelector((state) => state.app.user);
+  const user = useSelector((state) => state.app.user);
   const checkLoggedIn =
-    Object.keys(loggedIn).length > 0 || localStorage.getItem("user")
-      ? true
-      : false;
+    user.isCoordinator ||
+    JSON.parse(localStorage.getItem("user")).isCoordinator;
 
   return (
     <>
       {checkLoggedIn ? (
-        location.pathname !== "/home/create_post" ? (
+        location.pathname !== "/home/create_survey" ? (
           <div
             className="footer"
-            onClick={() => history.push("/home/create_post")}
+            onClick={() => history.push("/home/create_survey")}
           >
-            <img
-              src={add}
-              style={{ height: "2.4rem", width: "2.4rem" }}
-              alt="New post"
-              className="icon"
-            />
+            Create a new Survey
           </div>
         ) : (
-          <div className="footer">
-            <img
-              src={add}
-              style={{ height: "2.4rem", width: "2.4rem" }}
-              alt="New post"
-              className="icon"
-            />
-          </div>
+          <div className="footer">Create a new Survey</div>
         )
       ) : null}
     </>

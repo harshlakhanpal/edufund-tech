@@ -1,0 +1,51 @@
+import React, { useState, useEffect } from "react";
+import moment from "moment";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+import { useHistory } from "react-router-dom";
+
+import viewArrow from "../assets/icons/view-arrow.svg";
+import Loader from "./Loader";
+const Home = () => {
+  const [surveys, setSurveys] = useState([]);
+  const history = useHistory();
+
+  const fetchSurveys = async () => {
+    const { data } = await axios.get("http://localhost:5000/api/surveys", {
+      headers: { authorization: localStorage.getItem("token") },
+    });
+    console.log(data);
+    setSurveys(data);
+  };
+  useEffect(() => {
+    fetchSurveys();
+  }, []);
+
+  return (
+    <section className="home">
+      {surveys.map(({ username, subject, createdAt, id }) => (
+        <div className="card">
+          <div className="info">
+            <p style={{ fontSize: "1.65rem", padding: "1.3rem" }}>{subject}</p>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "1rem",
+              }}
+            >
+              <p>{username}</p>
+              <p>{moment(createdAt).fromNow()}</p>
+            </div>
+          </div>
+          <div className="action" onClick={() => history.push(`/home/${id}`)}>
+            <img src={viewArrow} alt="View post" className="icon" />
+          </div>
+        </div>
+      ))}
+    </section>
+  );
+};
+
+export default Home;

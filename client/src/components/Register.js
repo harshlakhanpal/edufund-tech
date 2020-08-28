@@ -115,7 +115,6 @@ const Register = () => {
       <input
         className="input"
         type="number"
-        name="age"
         value={values.age}
         onChange={handleInputChange}
         placeholder="Enter your Age"

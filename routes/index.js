@@ -32,14 +32,14 @@ router.post("/auth/register", async (req, res) => {
     );
 
     if (!valid) {
-      throw new Error("Errors", { errors });
+      res.json({ error: "Please enter valid details" });
     }
 
     const existingUser = await User.findOne({
       $or: [{ name }, { email }],
     });
     if (existingUser) {
-      throw new Error("User already exists!");
+      res.json({ error: "User already exists!" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -65,19 +65,17 @@ router.post("/auth/login", async (req, res) => {
   const { email, password } = req.body;
   const { errors, valid } = validateUserLogin(email, password);
   if (!valid) {
-    throw new Error("Errors", { errors });
+    res.json({ error: "Not valid " });
   }
   const user = await User.findOne({ email });
 
   if (!user) {
-    errors.general = "User not found";
-    throw new Error("User not found", { errors });
+    res.json({ error: "User not found" });
   }
 
   const matchPassword = await bcrypt.compare(password, user.password);
   if (!matchPassword) {
-    errors.general = "Wrong Credentials";
-    throw new Error("Wrong Credentials", { errors });
+    res.json({ error: "Wrong Credentials" });
   }
 
   const token = jwt.sign({ id: user.id }, "mysecret");
@@ -140,7 +138,7 @@ router.get("/api/surveys", async (req, res) => {
     //  const surveys = await Survey.find();
 
     console.log(surveys.length);
-    res.json({ surveys });
+    res.json(surveys);
   } catch (err) {
     res.json({ error: err });
   }
