@@ -1,4 +1,5 @@
 const initialState = {
+  appLoading: false,
   drawerVisibility: false,
   user: {},
 };
@@ -9,6 +10,11 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         drawerVisibility: !state.drawerVisibility,
+      };
+    case "TOGGLE_LOADING":
+      return {
+        ...state,
+        appLoading: !state.appLoading,
       };
     case "LOGIN":
       return {
