@@ -3,6 +3,7 @@ import "./App.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Header from "./components/Header";
+import AnswerSurvey from "./components/AnswerSurvey";
 import Footer from "./components/Footer";
 import Landing from "./components/Landing";
 import Drawer from "./components/Drawer";
@@ -25,6 +26,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/home" component={Home} />
+          <PrivateRoute exact path="/home/:id" component={AnswerSurvey} />
 
           <PageNotFound />
         </Switch>

@@ -24,7 +24,7 @@ const Home = () => {
 
   return (
     <section className="home">
-      {surveys.map(({ username, subject, createdAt, id }) => (
+      {surveys.map(({ username, subject, createdAt, _id }) => (
         <div className="card">
           <div className="info">
             <p style={{ fontSize: "1.65rem", padding: "1.3rem" }}>{subject}</p>
@@ -39,7 +39,7 @@ const Home = () => {
               <p>{moment(createdAt).fromNow()}</p>
             </div>
           </div>
-          <div className="action" onClick={() => history.push(`/home/${id}`)}>
+          <div className="action" onClick={() => history.push(`/home/${_id}`)}>
             <img src={viewArrow} alt="View post" className="icon" />
           </div>
         </div>
