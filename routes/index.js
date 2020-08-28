@@ -108,6 +108,30 @@ router.post("/api/survey", async (req, res) => {
   }
 });
 
+router.get("/api/survey/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const survey = await Survey.findById(id);
+
+    res.json(survey);
+  } catch (err) {
+    res.json({ error: err });
+  }
+});
+
+router.put("/api/survey/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const survey = await Survey.findByIdAndUpdate(id, req.body);
+
+    res.json(survey);
+  } catch (err) {
+    res.json({ error: err });
+  }
+});
+
 router.get("/api/surveys", async (req, res) => {
   const { body, headers } = req;
 
