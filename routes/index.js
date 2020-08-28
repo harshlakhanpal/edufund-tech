@@ -12,7 +12,7 @@ const authCheck = require("../utils/auth");
 
 router.get("/", (req, res) => res.send("Test"));
 
-router.get("/auth/register", async (req, res) => {
+router.post("/auth/register", async (req, res) => {
   try {
     const {
       name,
