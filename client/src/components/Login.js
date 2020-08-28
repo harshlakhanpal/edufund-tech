@@ -55,13 +55,13 @@ const Login = () => {
         email,
         password,
       });
-      dispatch(loginAction(data));
+      await dispatch(loginAction(data));
       localStorage.setItem("token", JSON.stringify(data.token));
       localStorage.setItem("user", JSON.stringify(data));
 
       console.log(data);
 
-      setTimeout(() => history.push("/home"), 500);
+      history.push("/home");
     } catch (err) {
       console.log(err);
     } finally {

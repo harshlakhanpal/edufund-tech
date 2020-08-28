@@ -2,21 +2,30 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { setLoading } from "../store/app/actions";
 
 import viewArrow from "../assets/icons/view-arrow.svg";
-import Loader from "./Loader";
+
 const Home = () => {
   const [surveys, setSurveys] = useState([]);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const fetchSurveys = async () => {
-    const { data } = await axios.get("http://localhost:5000/api/surveys", {
-      headers: { authorization: localStorage.getItem("token") },
-    });
-    console.log(data);
-    setSurveys(data);
+    dispatch(setLoading());
+    try {
+      const { data } = await axios.get("http://localhost:5000/api/surveys", {
+        headers: { authorization: localStorage.getItem("token") },
+      });
+      console.log(data);
+      setSurveys(data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      dispatch(setLoading());
+    }
   };
   useEffect(() => {
     fetchSurveys();
