@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import Header from "./components/Header";
 import AnswerSurvey from "./components/AnswerSurvey";
 import MySurveys from "./components/MySurveys";
+import ViewMySurvey from "./components/ViewMySurvey";
 import Footer from "./components/Footer";
 import RestrictedRoute from "./components/RestrictedRoute";
 import Landing from "./components/Landing";
@@ -41,6 +42,12 @@ const App = () => {
           />
 
           <RestrictedRoute exact path="/home/mysurveys" component={MySurveys} />
+          <RestrictedRoute
+            exact
+            path="/home/mysurveys/:id"
+            component={ViewMySurvey}
+          />
+
           <PrivateRoute exact path="/home/:id" component={AnswerSurvey} />
           <PageNotFound />
         </Switch>

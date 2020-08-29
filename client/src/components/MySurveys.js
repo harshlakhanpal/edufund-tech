@@ -55,7 +55,7 @@ const MySurveys = () => {
             </div>
             <div
               className="action"
-              onClick={() => history.push(`/home/${_id}`)}
+              onClick={() => history.push(`/home/mysurveys/${_id}`)}
             >
               <img src={viewArrow} alt="View post" className="icon" />
             </div>
