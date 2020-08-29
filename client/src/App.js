@@ -18,9 +18,14 @@ import PageNotFound from "./components/PageNotFound";
 import PrivateRoute from "./components/PrivateRoute";
 import { Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const App = () => {
   const loading = useSelector((state) => state.app.appLoading);
+
+  if (process.env.NODE_ENV !== "production") {
+    axios.defaults.baseURL = "http://localhost:5000/";
+  }
 
   return (
     <div className="app">

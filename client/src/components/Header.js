@@ -18,27 +18,27 @@ const Header = () => {
   //   console.log("header render");
   return (
     <div className="app-header">
-      {checkLoggedIn && (
-        <span
-          style={{ marginLeft: "1rem" }}
-          onClick={() =>
-            location.pathname !== "/home" ? history.push("/home") : null
-          }
-        >
-          <img src={homeicon} alt="home" className="icon" />
-        </span>
-      )}
       <h2>SurveyHome</h2>
       {checkLoggedIn && (
-        <span
-          style={{ marginRight: "1rem" }}
-          onClick={async () => {
-            await dispatch(logout());
-            history.push("/login");
-          }}
-        >
-          <img src={logouticon} alt="logout" className="icon" />
-        </span>
+        <div>
+          <span
+            style={{ marginRight: "1rem" }}
+            onClick={() =>
+              location.pathname !== "/home" ? history.push("/home") : null
+            }
+          >
+            <img src={homeicon} alt="home" className="icon" />
+          </span>
+          <span
+            style={{ marginRight: "1rem" }}
+            onClick={async () => {
+              await dispatch(logout());
+              history.push("/login");
+            }}
+          >
+            <img src={logouticon} alt="logout" className="icon" />
+          </span>
+        </div>
       )}
     </div>
   );

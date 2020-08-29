@@ -60,7 +60,6 @@ const CreateSurvey = () => {
       <h1>Create a new survey</h1>
       <textarea
         className="input"
-        style={{ marginBottom: "0" }}
         rows="12"
         name="subject"
         value={subject}

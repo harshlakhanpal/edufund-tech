@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
     <section className="home">
-      <h1 style={{ textAlign: "center" }}>Surveys you are eligible for</h1>
+      <h1 className="title">Surveys you are eligible for</h1>
       {surveys.length > 0 ? (
         surveys.map(({ username, subject, createdAt, _id }) => (
           <div className="card">
