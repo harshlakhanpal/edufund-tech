@@ -12,10 +12,6 @@ const ViewMySurvey = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   let { id } = useParams();
-  const [body, setBody] = useState("");
-  const handleBodyChange = (e) => {
-    setBody(e.target.value);
-  };
 
   const fetchSurvey = async () => {
     const { data } = await axios.get(`http://localhost:5000/api/survey/${id}`);
@@ -44,7 +40,6 @@ const ViewMySurvey = () => {
 
   return (
     <section className="post-page">
-      {/* {loading && <Loader />} */}
       <div>
         {survey && (
           <>
@@ -63,29 +58,6 @@ const ViewMySurvey = () => {
                   </p>
                 </div>
               </div>
-              {/* <div className="actions">
-                 {user && user.username === post.username && (
-                   <span onClick={postDelete}>
-                     <img src={del} alt="Delete Post" className="icon" />
-                   </span>
-                 )}
-                 <span className="like" onClick={toggleLike}>
-                   {true &&
-                   postLikes.some((one) => one.username === user.username) ? (
-                     <img
-                       src={filledHeart}
-                       alt="Like/Unlike Post"
-                       className="icon"
-                     />
-                   ) : (
-                     <img
-                       src={emptyHeart}
-                       alt="Like/Unlike Post"
-                       className="icon"
-                     />
-                   )}
-                 </span>
-               </div> */}
             </div>
 
             {survey.responses &&
