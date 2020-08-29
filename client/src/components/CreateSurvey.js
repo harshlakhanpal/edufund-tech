@@ -73,7 +73,7 @@ const CreateSurvey = () => {
         name="email"
         value={minAge}
         onChange={(e) => setMinAge(e.target.value)}
-        placeholder="Set a minimum age(default - 18)"
+        placeholder="Set a minimum age(default-18)"
       />
 
       <select
