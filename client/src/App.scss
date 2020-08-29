@@ -81,7 +81,7 @@ html body #root {
         box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
 
         background: #4265e2;
-        border-radius: 2rem;
+        border-radius: 1rem;
         margin: auto;
         margin-top: 1rem;
         display: flex;
@@ -112,22 +112,27 @@ html body #root {
           margin-bottom: 0.5rem;
         }
       }
+      .my-title {
+        min-height: 5rem;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #4265e2;
+        font-size: 2rem;
+      }
     }
     .create-post {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
-      .btn {
-        margin: 0;
-        align-self: flex-end;
-      }
     }
   }
 
   .mysurveys {
-    position: sticky;
+    position: fixed;
+    bottom: 0;
     width: fit-content;
     display: flex;
     align-self: flex-end;

@@ -49,22 +49,15 @@ const ViewMySurvey = () => {
       <div>
         {survey && (
           <>
-            <div className="card">
-              <div className="card-content">
-                <div style={{ fontSize: "1.65rem" }}>{survey.subject}</div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    paddingTop: "1rem",
-                  }}
-                >
-                  <p style={{ textAlign: "end" }}>
-                    {`Posted by ${survey.username}`}
-                  </p>
-                </div>
-              </div>
-            </div>
+            <div className="my-title">{survey.subject} </div>
+
+            <hr style={{ width: "80%", margin: "auto" }} />
+            <p
+              className="link"
+              style={{ textAlign: "center", marginBottom: "2px" }}
+            >
+              Responses
+            </p>
 
             {survey.responses && survey.responses.length > 0 ? (
               survey.responses.map(({ body, createdAt, id }) => (

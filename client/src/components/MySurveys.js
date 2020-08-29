@@ -32,9 +32,9 @@ const MySurveys = () => {
 
   return (
     <section className="home">
-      <h1 style={{ textAlign: "center" }}>Surveys created by me</h1>
+      <h1 style={{ textAlign: "center", fontSize: "2.6rem" }}>My Surveys</h1>
       {surveys.length > 0 ? (
-        surveys.map(({ username, subject, createdAt, _id }) => (
+        surveys.map(({ responses, subject, createdAt, _id }) => (
           <div className="card">
             <div className="info">
               <p style={{ fontSize: "1.65rem", padding: "1.3rem" }}>
@@ -47,8 +47,8 @@ const MySurveys = () => {
                   padding: "1rem",
                 }}
               >
-                <p>{username}</p>
                 <p>{moment(createdAt).fromNow()}</p>
+                <p>{responses.length}</p>
               </div>
             </div>
             <div

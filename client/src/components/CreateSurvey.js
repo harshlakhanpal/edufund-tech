@@ -80,9 +80,10 @@ const CreateSurvey = () => {
         name="genderSpecific"
         onChange={handleSelect}
       >
-        <option value="all" selected disabled>
-          Gender Specific(default- all)
+        <option value="all" selected hidden>
+          Gender Specific(default-all)
         </option>
+        <option value="all">All</option>
 
         <option key="male" value="male">
           Male
