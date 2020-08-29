@@ -96,7 +96,6 @@ const AnswerSurvey = () => {
             <div className="textarea-container">
               <textarea
                 className="input"
-                style={{ marginBottom: "0" }}
                 rows="4"
                 placeholder="Type your answer here."
                 value={body}

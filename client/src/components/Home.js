@@ -3,7 +3,7 @@ import moment from "moment";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { setLoading } from "../store/app/actions";
 
 import viewArrow from "../assets/icons/view-arrow.svg";
@@ -30,9 +30,13 @@ const Home = () => {
     fetchSurveys();
   }, []);
 
+  const user = JSON.parse(localStorage.getItem("user")) || {};
+  const checkCoordinator = user ? user.isCoordinator : false;
+
   return (
     <section className="home">
       <h1 className="title">Surveys you are eligible for</h1>
+      {checkCoordinator && <Redirect to="/home/mysurveys" />}
       {surveys.length > 0 ? (
         surveys.map(({ username, subject, createdAt, _id }) => (
           <div className="card">

@@ -18,7 +18,7 @@ const Header = () => {
   //   console.log("header render");
   return (
     <div className="app-header">
-      <h2>SurveyHome</h2>
+      <h2>EduFund-Surveys</h2>
       {checkLoggedIn && (
         <div>
           <span
