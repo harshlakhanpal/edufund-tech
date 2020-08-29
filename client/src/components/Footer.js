@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import add from "../assets/icons/Add.svg";
 
 const Footer = () => {
   const history = useHistory();
@@ -42,7 +41,7 @@ const Footer = () => {
                   : null
               }
             >
-              My <br /> Surveys
+              My Surveys
             </div>
             <div className="footer">Create a new Survey</div>
           </>

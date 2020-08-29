@@ -1,13 +1,14 @@
-import React, { memo } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/app/actions";
 import logouticon from "../assets/icons/logout.svg";
 import homeicon from "../assets/icons/home.svg";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Header = () => {
   const history = useHistory();
+  const location = useLocation();
   const loggedIn = useSelector((state) => state.app.user);
   const checkLoggedIn =
     Object.keys(loggedIn).length > 0 || localStorage.getItem("user")
@@ -19,10 +20,10 @@ const Header = () => {
     <div className="app-header">
       {checkLoggedIn && (
         <span
-          style={{ marginRight: "1rem" }}
-          onClick={async () => {
-            history.push("/home");
-          }}
+          style={{ marginLeft: "1rem" }}
+          onClick={() =>
+            location.pathname !== "/home" ? history.push("/home") : null
+          }
         >
           <img src={homeicon} alt="home" className="icon" />
         </span>
@@ -42,4 +43,4 @@ const Header = () => {
     </div>
   );
 };
-export default memo(Header);
+export default Header;
