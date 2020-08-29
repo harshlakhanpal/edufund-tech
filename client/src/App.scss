@@ -114,6 +114,9 @@ html body #root {
       }
       .my-title {
         min-height: 5rem;
+
+        width: 85%;
+        margin: 1rem auto;
         height: fit-content;
         display: flex;
         justify-content: center;
@@ -162,10 +165,11 @@ html body #root {
   justify-content: space-between;
   align-items: center;
   background: #4265e2;
-  border-radius: 1.5rem;
-  margin-top: 1rem;
+  border-radius: 1.2rem;
+  /* margin-top: 1rem; */
+  width: 70%;
+  margin: 1rem auto;
 }
-
 .input {
   border: 1px solid #4265e2;
   border-radius: 1.5rem;

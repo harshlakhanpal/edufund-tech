@@ -51,7 +51,7 @@ const ViewMySurvey = () => {
           <>
             <div className="my-title">{survey.subject} </div>
 
-            <hr style={{ width: "80%", margin: "auto" }} />
+            <hr />
             <p
               className="link"
               style={{ textAlign: "center", marginBottom: "2px" }}
