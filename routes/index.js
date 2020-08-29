@@ -81,7 +81,7 @@ router.post("/auth/login", async (req, res) => {
 
 router.post("/api/survey", async (req, res) => {
   const { body, headers } = req;
-
+  console.log(typeof body.minAge);
   const { id } = authCheck(headers.authorization);
   if (body.subject.trim() === "") {
     res.json({ error: "Enter the subject" });
@@ -146,9 +146,15 @@ router.get("/api/surveys", async (req, res) => {
   const { id } = authCheck(headers.authorization);
   try {
     const user = await User.findById(id);
-    console.log(user);
+    console.log(typeof user.age);
 
-    const surveys = await Survey.find({ "responses.userId": { $ne: user.id } });
+    const surveys = await Survey.find({
+      $and: [
+        { "responses.userId": { $ne: user.id } },
+        { minAge: { $lte: user.age } },
+        { $or: [{ genderSpecific: "all" }, { genderSpecific: user.gender }] },
+      ],
+    });
     //  const surveys = await Survey.find();
 
     console.log(surveys.length);

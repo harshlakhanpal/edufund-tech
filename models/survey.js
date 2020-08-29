@@ -19,6 +19,8 @@ const surveySchema = new Schema({
       createdAt: String,
     },
   ],
+  minAge: { type: Number },
+  genderSpecific: { type: String, enum: ["male", "female", "all"] },
   user: {
     type: Schema.Types.ObjectId,
     ref: "users",
