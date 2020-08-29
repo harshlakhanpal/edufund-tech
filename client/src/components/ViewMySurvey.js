@@ -68,7 +68,7 @@ const ViewMySurvey = () => {
               </div>
             </div>
 
-            {survey.responses &&
+            {survey.responses && survey.responses.length > 0 ? (
               survey.responses.map(({ body, createdAt, id }) => (
                 <div className="comment">
                   <span style={{ wordBreak: "break-all" }}>{body}</span>
@@ -80,7 +80,12 @@ const ViewMySurvey = () => {
                     <img src={del} alt="Delete comment" className="icon" />
                   </span>
                 </div>
-              ))}
+              ))
+            ) : (
+              <h1 style={{ textAlign: "center", marginTop: "1rem" }}>
+                No responses yet.
+              </h1>
+            )}
           </>
         )}
       </div>

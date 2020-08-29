@@ -1,7 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/app/actions";
 import logouticon from "../assets/icons/logout.svg";
+import homeicon from "../assets/icons/home.svg";
+
 import { useHistory } from "react-router-dom";
 
 const Header = () => {
@@ -12,9 +14,20 @@ const Header = () => {
       ? true
       : false;
   const dispatch = useDispatch();
+  console.log("header render");
   return (
     <div className="app-header">
-      <h2>Social Media</h2>
+      {checkLoggedIn && (
+        <span
+          style={{ marginRight: "1rem" }}
+          onClick={async () => {
+            history.push("/home");
+          }}
+        >
+          <img src={homeicon} alt="home" className="icon" />
+        </span>
+      )}
+      <h2>SurveyHome</h2>
       {checkLoggedIn && (
         <span
           style={{ marginRight: "1rem" }}
@@ -29,4 +42,4 @@ const Header = () => {
     </div>
   );
 };
-export default Header;
+export default memo(Header);

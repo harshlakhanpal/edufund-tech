@@ -9,7 +9,6 @@ import ViewMySurvey from "./components/ViewMySurvey";
 import Footer from "./components/Footer";
 import RestrictedRoute from "./components/RestrictedRoute";
 import Landing from "./components/Landing";
-import Drawer from "./components/Drawer";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Loader from "./components/Loader";
@@ -27,8 +26,6 @@ const App = () => {
     <div className="app">
       {loading && <Loader />}
       <Header />
-      <Drawer />
-
       <div className="content">
         <Switch>
           <Route exact path="/" component={Landing} />
