@@ -37,7 +37,7 @@ const Register = () => {
     dispatch(setLoading());
 
     try {
-      const { data } = await axios.post("http://localhost:5000/auth/register", {
+      const { data } = await axios.post("/auth/register", {
         ...values,
       });
       if (data.error) {

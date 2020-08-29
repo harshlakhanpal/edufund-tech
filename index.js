@@ -24,9 +24,11 @@ mongoose
   .then(() => console.log("Database Connected"))
   .catch((err) => console.log(err));
 
-// app.use(express.static("public"));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "public", "index.html"));
-// });
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  });
+}
 
 app.listen(PORT, () => console.log("Server Running"));

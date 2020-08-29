@@ -16,7 +16,7 @@ const Home = () => {
   const fetchSurveys = async () => {
     dispatch(setLoading());
     try {
-      const { data } = await axios.get("http://localhost:5000/api/surveys", {
+      const { data } = await axios.get("/api/surveys", {
         headers: { authorization: JSON.parse(localStorage.getItem("token")) },
       });
 

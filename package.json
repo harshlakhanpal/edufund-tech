@@ -8,7 +8,7 @@
     "serve": "nodemon",
     "client": "cd ./client && yarn start",
     "dev": "concurrently \"yarn serve\" \"yarn client\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "heroku-postbuild": "cd ./client && yarn && yarn build"
   },
   "keywords": [],
   "author": "",

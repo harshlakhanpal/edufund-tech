@@ -20,7 +20,7 @@ const CreateSurvey = () => {
     dispatch(setLoading());
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/survey",
+        "/api/survey",
         {
           subject,
           minAge: minAge.trim() === "" ? 18 : Number(minAge),

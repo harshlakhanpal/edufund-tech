@@ -14,7 +14,7 @@ const ViewMySurvey = () => {
   let { id } = useParams();
 
   const fetchSurvey = async () => {
-    const { data } = await axios.get(`http://localhost:5000/api/survey/${id}`);
+    const { data } = await axios.get(`/api/survey/${id}`);
     console.log(data);
     setSurvey(data);
   };
@@ -28,7 +28,7 @@ const ViewMySurvey = () => {
     dispatch(setLoading());
 
     try {
-      await axios.put(`http://localhost:5000/api/survey/${id}`, { ...survey });
+      await axios.put(`/api/survey/${id}`, { ...survey });
       await setSurvey(survey);
       toast.success("Response deleted successfully!", {
         position: "top-center",
