@@ -84,22 +84,34 @@ const Register = () => {
         onChange={handleInputChange}
         placeholder="Enter your email"
       />
-      <div style={{ display: "inline-block", color: "black" }}>
-        Gender
-        <input
-          type="radio"
-          name="gender"
-          value="male"
-          onChange={handleInputChange}
-        />
-        Male
-        <input
-          type="radio"
-          name="gender"
-          value="female"
-          onChange={handleInputChange}
-        />
-        Female
+      <div
+        style={{
+          display: "flex",
+
+          color: "black",
+          width: "100%",
+          justifyContent: "space-between",
+        }}
+      >
+        <span style={{ fontSize: "1.65rem" }}>Gender:</span>
+        <label>
+          <input
+            type="radio"
+            name="gender"
+            value="male"
+            onChange={handleInputChange}
+          />
+          <span style={{ display: "inline-block" }}>Male</span>
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="gender"
+            value="female"
+            onChange={handleInputChange}
+          />
+          <span style={{ display: "inline-block" }}>Female</span>
+        </label>
       </div>
       <input
         className="input"
@@ -127,8 +139,10 @@ const Register = () => {
         onChange={handleInputChange}
         placeholder="Confirm your password"
       />
-      <input type="checkbox" defaultChecked={false} onChange={handleCheck} />{" "}
-      Register as a coordinator!
+      <div style={{ display: "inline-block", color: "black" }}>
+        <input type="checkbox" defaultChecked={false} onChange={handleCheck} />{" "}
+        <span style={{ fontSize: "1.20rem" }}>Register as coordinator</span>
+      </div>
       <br />
       <span onClick={() => history.push("/login")} className="link">
         Already a member ? Login here
