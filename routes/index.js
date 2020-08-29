@@ -13,52 +13,49 @@ const authCheck = require("../utils/auth");
 router.get("/", (req, res) => res.send("Test"));
 
 router.post("/auth/register", async (req, res) => {
-  try {
-    const {
-      name,
-      email,
-      password,
-      confirmPassword,
-      gender,
-      age,
-      isCoordinator,
-    } = req.body;
+  const {
+    name,
+    email,
+    password,
+    confirmPassword,
+    gender,
+    age,
+    isCoordinator,
+  } = req.body;
+  console.log(req.body);
 
-    const { valid, errors } = validateUserRegistration(
-      name,
-      email,
-      password,
-      confirmPassword
-    );
+  const { valid, errors } = validateUserRegistration(
+    name,
+    email,
+    password,
+    confirmPassword
+  );
 
-    if (!valid) {
-      res.json({ error: "Please enter valid details" });
-    }
-
-    const existingUser = await User.findOne({
-      $or: [{ name }, { email }],
-    });
-    if (existingUser) {
-      res.json({ error: "User already exists!" });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = new User({
-      email,
-      name,
-      gender,
-      age,
-      isCoordinator,
-      password: hashedPassword,
-      createdAt: new Date().toISOString(),
-    });
-    await user.save();
-    const token = jwt.sign({ id: user.id }, "mysecret");
-    res.json({ token, id: user._id, ...user._doc });
-  } catch (err) {
-    res.json({ error: err });
+  if (!valid) {
+    res.json({ error: "Please enter valid details" });
   }
+
+  const existingUser = await User.findOne({
+    $or: [{ name }, { email }],
+  });
+  if (existingUser) {
+    res.json({ error: "User already exists!" });
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const user = new User({
+    email,
+    name,
+    gender,
+    age,
+    isCoordinator,
+    password: hashedPassword,
+    createdAt: new Date().toISOString(),
+  });
+  await user.save();
+  const token = jwt.sign({ id: user.id }, "mysecret");
+  res.json({ token, id: user._id, ...user._doc });
 });
 
 router.post("/auth/login", async (req, res) => {

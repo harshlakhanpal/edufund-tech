@@ -1,7 +1,7 @@
 const validateUserRegistration = (name, email, password, confirmPassword) => {
   const errors = {};
   if (name.trim() === "") {
-    errors.username = "Username must not be empty";
+    errors.name = "Name must not be empty";
   }
   if (email.trim() === "") {
     errors.email = "Email must not be empty";

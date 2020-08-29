@@ -5,47 +5,19 @@ import { useDispatch } from "react-redux";
 import { setLoading } from "../store/app/actions";
 import { useHistory } from "react-router-dom";
 
-import Loader from "./Loader";
-
 const Register = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   useEffect(() => {
     if (localStorage.getItem("user")) history.push("/home");
   }, []);
-
-  //   let [userLogin, { called, loading, data, error }] = useMutation(login, {
-  //     variables: { username, password },
-  //     pollInterval: 0,
-  //     onCompleted: (data) => {
-  //       dispatch(loginAction(data.login));
-  //       localStorage.setItem("token", JSON.stringify(data.login.token));
-  //       localStorage.setItem("user", JSON.stringify(data.login));
-  //       history.push("/home");
-  //       toast.success(`You are now logged in}`, {
-  //         position: "top-center",
-  //         autoClose: 1500,
-  //         hideProgressBar: true,
-  //         closeOnClick: true,
-  //         pauseOnHover: false,
-  //         draggable: false,
-  //       });
-  //     },
-
-  //     onError: (error) => {
-  //       console.log(error);
-  //       toast.error("Please enter your credentials again.", {
-  //         position: "top-center",
-  //         autoClose: 1500,
-  //         hideProgressBar: true,
-  //         closeOnClick: true,
-  //         pauseOnHover: false,
-  //         draggable: false,
-  //       });
-  //     },
-  //   });
 
   const handleInputChange = (e) =>
     setValues({
@@ -64,15 +36,32 @@ const Register = () => {
   const handleRegister = async () => {
     dispatch(setLoading());
 
-    //  const { email, name, password, confirmPassword } = values;
     try {
-      await axios.post("http://localhost:5000/auth/register", {
+      const { data } = await axios.post("http://localhost:5000/auth/register", {
         ...values,
       });
+      if (data.error) {
+        console.log(data.error);
+        toast.error(data.error, {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+        });
+      } else {
+        toast.success("Registration successful!", {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+        });
 
-      setTimeout(() => history.push("/login"), 500);
-    } catch (err) {
-      console.log(err);
+        setTimeout(() => history.push("/login"), 500);
+      }
     } finally {
       dispatch(setLoading());
     }
