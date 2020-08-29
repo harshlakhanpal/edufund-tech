@@ -27,6 +27,17 @@ const AnswerSurvey = () => {
 
   const handleResponse = async () => {
     const userId = JSON.parse(localStorage.getItem("user"))._id;
+    if (body.trim() === "") {
+      toast.error("Cannot submit empty response", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+      });
+      return;
+    }
     survey.responses.unshift({
       body,
       userId,
@@ -35,19 +46,37 @@ const AnswerSurvey = () => {
     dispatch(setLoading());
 
     try {
-      await axios.put(`http://localhost:5000/api/survey/${id}`, { ...survey });
-      setTimeout(() => history.push("/home"), 500);
-    } catch (err) {
-      console.log(err);
+      const { data } = await axios.put(
+        `http://localhost:5000/api/survey/${id}`,
+        { ...survey }
+      );
+      if (data.error) {
+        toast.error(data.error, {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+        });
+      } else {
+        toast.success("Response submitted successfully!", {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+        });
+        history.push("/home");
+      }
     } finally {
       dispatch(setLoading());
     }
-    console.log(survey);
   };
 
   return (
     <section className="post-page">
-      {/* {loading && <Loader />} */}
       <div>
         {survey && (
           <>
@@ -66,29 +95,6 @@ const AnswerSurvey = () => {
                   </p>
                 </div>
               </div>
-              {/* <div className="actions">
-                 {user && user.username === post.username && (
-                   <span onClick={postDelete}>
-                     <img src={del} alt="Delete Post" className="icon" />
-                   </span>
-                 )}
-                 <span className="like" onClick={toggleLike}>
-                   {true &&
-                   postLikes.some((one) => one.username === user.username) ? (
-                     <img
-                       src={filledHeart}
-                       alt="Like/Unlike Post"
-                       className="icon"
-                     />
-                   ) : (
-                     <img
-                       src={emptyHeart}
-                       alt="Like/Unlike Post"
-                       className="icon"
-                     />
-                   )}
-                 </span>
-               </div> */}
             </div>
             <div className="textarea-container">
               <textarea
@@ -103,24 +109,6 @@ const AnswerSurvey = () => {
                 Submit
               </button>
             </div>
-            {/* {post.comments &&
-               post.comments.length > 0 &&
-               post.comments.map(({ body, id, username }) => (
-                 <div className="comment">
-                   <span style={{ wordBreak: "break-all" }}>{body}</span>
-                   {user && user.username === username && (
-                     <span
-                       style={{ alignSelf: "flex-end" }}
-                       onClick={async () => {
-                         await setCommentID(id);
-                         commentDelete();
-                       }}
-                     >
-                       <img src={del} alt="Delete comment" className="icon" />
-                     </span>
-                   )}
-                 </div>
-               ))} */}
           </>
         )}
       </div>

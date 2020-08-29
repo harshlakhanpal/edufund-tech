@@ -30,6 +30,14 @@ const ViewMySurvey = () => {
     try {
       await axios.put(`http://localhost:5000/api/survey/${id}`, { ...survey });
       await setSurvey(survey);
+      toast.success("Response deleted successfully!", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+      });
     } catch (err) {
       console.log(err);
     } finally {
