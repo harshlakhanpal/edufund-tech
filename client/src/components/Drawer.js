@@ -25,7 +25,7 @@ const Drawer = () => {
   const visible = useSelector((state) => state.app.drawerVisibility);
   const dispatch = useDispatch();
 
-  console.log(visible);
+  //   console.log(visible);
   return (
     <>
       {visible ? (

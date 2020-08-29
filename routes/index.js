@@ -20,7 +20,7 @@ router.post("/auth/register", async (req, res) => {
     age,
     isCoordinator,
   } = req.body;
-  console.log(req.body);
+  //   console.log(req.body);
 
   const { valid, errors } = validateUserRegistration(
     name,
@@ -30,7 +30,7 @@ router.post("/auth/register", async (req, res) => {
   );
 
   if (!valid) {
-    console.log(errors);
+    //  console.log(errors);
     res.json({ error: "Please enter valid details" });
     return;
   }
@@ -82,7 +82,7 @@ router.post("/auth/login", async (req, res) => {
 
 router.post("/api/survey", async (req, res) => {
   const { body, headers } = req;
-  console.log(typeof body.minAge);
+  //   console.log(typeof body.minAge);
   const { id } = authCheck(headers.authorization);
   if (body.subject.trim() === "") {
     res.json({ error: "Enter the subject" });
@@ -129,12 +129,12 @@ router.get("/api/mysurveys", async (req, res) => {
   const { id } = authCheck(headers.authorization);
   try {
     const user = User.findById(id);
-    console.log(user);
+    //  console.log(user);
 
     const surveys = await Survey.find({ user: id });
     //  const surveys = await Survey.find();
 
-    console.log(surveys.length);
+    //  console.log(surveys.length);
     res.json(surveys);
   } catch (err) {
     res.json({ error: err });
@@ -147,7 +147,7 @@ router.get("/api/surveys", async (req, res) => {
   const { id } = authCheck(headers.authorization);
   try {
     const user = await User.findById(id);
-    console.log(typeof user.age);
+    //  console.log(typeof user.age);
 
     const surveys = await Survey.find({
       $and: [
@@ -158,7 +158,7 @@ router.get("/api/surveys", async (req, res) => {
     });
     //  const surveys = await Survey.find();
 
-    console.log(surveys.length);
+    //  console.log(surveys.length);
     res.json(surveys);
   } catch (err) {
     res.json({ error: err });

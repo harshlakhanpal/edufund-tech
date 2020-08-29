@@ -20,10 +20,8 @@ const MySurveys = () => {
         headers: { authorization: JSON.parse(localStorage.getItem("token")) },
       });
 
-      console.log(data);
+      // console.log(data);
       setSurveys(data);
-    } catch (err) {
-      console.log(err);
     } finally {
       dispatch(setLoading());
     }

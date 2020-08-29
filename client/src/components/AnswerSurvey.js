@@ -18,7 +18,7 @@ const AnswerSurvey = () => {
 
   const fetchSurvey = async () => {
     const { data } = await axios.get(`/api/survey/${id}`);
-    console.log(data);
+    //  console.log(data);
     setSurvey(data);
   };
   useEffect(() => {

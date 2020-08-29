@@ -15,7 +15,7 @@ const ViewMySurvey = () => {
 
   const fetchSurvey = async () => {
     const { data } = await axios.get(`/api/survey/${id}`);
-    console.log(data);
+    //  console.log(data);
     setSurvey(data);
   };
   useEffect(() => {
@@ -24,11 +24,11 @@ const ViewMySurvey = () => {
 
   const handleResponseDelete = async (_id) => {
     survey.responses = survey.responses.filter((resp) => resp.id !== _id);
-    console.log(survey);
+    //  console.log(survey);
     dispatch(setLoading());
 
     try {
-      await axios.put(`/api/survey/${id}`, { ...survey });
+      await axios.put(`http://localhost:5000/api/survey/${id}`, { ...survey });
       await setSurvey(survey);
       toast.success("Response deleted successfully!", {
         position: "top-center",
@@ -38,12 +38,10 @@ const ViewMySurvey = () => {
         pauseOnHover: false,
         draggable: false,
       });
-    } catch (err) {
-      console.log(err);
     } finally {
       dispatch(setLoading());
     }
-    console.log(survey);
+    //  console.log(survey);
   };
 
   return (

@@ -31,7 +31,7 @@ const Register = () => {
       isCoordinator: !values.isCoordinator,
     });
   };
-  console.log(values);
+  //   console.log(values);
 
   const handleRegister = async () => {
     dispatch(setLoading());
@@ -41,7 +41,7 @@ const Register = () => {
         ...values,
       });
       if (data.error) {
-        console.log(data.error);
+        //   console.log(data.error);
         toast.error(data.error, {
           position: "top-center",
           autoClose: 1500,

@@ -15,7 +15,7 @@ const Header = () => {
       ? true
       : false;
   const dispatch = useDispatch();
-  console.log("header render");
+  //   console.log("header render");
   return (
     <div className="app-header">
       {checkLoggedIn && (
