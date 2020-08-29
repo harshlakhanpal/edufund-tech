@@ -32,6 +32,7 @@ router.post("/auth/register", async (req, res) => {
   );
 
   if (!valid) {
+    console.log(errors);
     res.json({ error: "Please enter valid details" });
   }
 

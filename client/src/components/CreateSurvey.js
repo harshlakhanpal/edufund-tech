@@ -8,15 +8,24 @@ import { useHistory } from "react-router-dom";
 const CreateSurvey = () => {
   const [subject, setSubject] = useState("");
   const [minAge, setMinAge] = useState("");
+  const [genderSpecific, setGenderSpecific] = useState("all");
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const handleSelect = (e) => {
+    setGenderSpecific(e.target.value);
+  };
 
   const handleSubmit = async () => {
     dispatch(setLoading());
     try {
       const { data } = await axios.post(
         "http://localhost:5000/api/survey",
-        { subject, minAge: minAge.trim() === "" ? 18 : Number(minAge) },
+        {
+          subject,
+          minAge: minAge.trim() === "" ? 18 : Number(minAge),
+          genderSpecific,
+        },
         {
           headers: { authorization: JSON.parse(localStorage.getItem("token")) },
         }
@@ -66,6 +75,24 @@ const CreateSurvey = () => {
         onChange={(e) => setMinAge(e.target.value)}
         placeholder="Set a minimum age(default - 18)"
       />
+
+      <select
+        className="input select-field"
+        name="genderSpecific"
+        onChange={handleSelect}
+      >
+        <option value="all" selected>
+          Default(All)
+        </option>
+
+        <option key="male" value="male">
+          Male
+        </option>
+        <option key="female" value="female">
+          Female
+        </option>
+      </select>
+
       <button className="btn" onClick={handleSubmit}>
         Submit
       </button>
