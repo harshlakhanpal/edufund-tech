@@ -10,8 +10,6 @@ const {
 } = require("../utils/validations.js");
 const authCheck = require("../utils/auth");
 
-router.get("/", (req, res) => res.send("Test"));
-
 router.post("/auth/register", async (req, res) => {
   const {
     name,
