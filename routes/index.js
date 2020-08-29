@@ -83,20 +83,19 @@ router.post("/api/survey", async (req, res) => {
   const { body, headers } = req;
 
   const { id } = authCheck(headers.authorization);
-  try {
-    const user = await User.findById(id);
-    console.log(user);
-    const newSurvey = new Survey({
-      ...body,
-      user: user.id,
-      username: user.name,
-      createdAt: new Date().toISOString(),
-    });
-    const survey = await newSurvey.save();
-    res.json({ survey });
-  } catch (err) {
-    res.json({ error: err });
+  if (body.subject.trim() === "") {
+    res.json({ error: "Enter the subject" });
   }
+  const user = await User.findById(id);
+
+  const newSurvey = new Survey({
+    ...body,
+    user: user.id,
+    username: user.name,
+    createdAt: new Date().toISOString(),
+  });
+  const survey = await newSurvey.save();
+  res.json({ survey });
 });
 
 router.get("/api/survey/:id", async (req, res) => {

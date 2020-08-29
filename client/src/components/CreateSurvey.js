@@ -20,10 +20,26 @@ const CreateSurvey = () => {
           headers: { authorization: JSON.parse(localStorage.getItem("token")) },
         }
       );
-      console.log(data);
-      history.push("/home");
-    } catch (err) {
-      console.log(err);
+      if (data.error) {
+        toast.error(data.error, {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+        });
+      } else {
+        toast.success("Survey created successfully!", {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+        });
+        history.push("/home");
+      }
     } finally {
       dispatch(setLoading());
     }
