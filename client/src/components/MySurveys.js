@@ -33,7 +33,7 @@ const MySurveys = () => {
   return (
     <section className="home">
       <h1 style={{ textAlign: "center", fontSize: "2.6rem" }}>My Surveys</h1>
-      {surveys.length > 0 ? (
+      {surveys.length > 0 &&
         surveys.map(({ responses, subject, createdAt, _id }) => (
           <div className="card">
             <div className="info">
@@ -58,13 +58,7 @@ const MySurveys = () => {
               <img src={viewArrow} alt="View post" className="icon" />
             </div>
           </div>
-        ))
-      ) : (
-        <h1 style={{ textAlign: "center", marginTop: "1rem" }}>
-          {" "}
-          You haven't created any surveys yet.
-        </h1>
-      )}
+        ))}
     </section>
   );
 };

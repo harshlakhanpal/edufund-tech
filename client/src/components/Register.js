@@ -87,31 +87,31 @@ const Register = () => {
       <div
         style={{
           display: "flex",
-
+          alignItems: "center",
           color: "black",
           width: "100%",
           justifyContent: "space-between",
         }}
       >
         <span style={{ fontSize: "1.65rem" }}>Gender:</span>
-        <label>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <input
             type="radio"
             name="gender"
             value="male"
             onChange={handleInputChange}
           />
-          <span style={{ display: "inline-block" }}>Male</span>
-        </label>
-        <label>
+          <span style={{ fontSize: "1.25rem" }}>Male</span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <input
             type="radio"
             name="gender"
             value="female"
             onChange={handleInputChange}
           />
-          <span style={{ display: "inline-block" }}>Female</span>
-        </label>
+          <span style={{ fontSize: "1.25rem" }}>Female</span>
+        </div>
       </div>
       <input
         className="input"
