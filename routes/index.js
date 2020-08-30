@@ -131,7 +131,7 @@ router.get("/api/mysurveys", async (req, res) => {
     const user = User.findById(id);
     //  console.log(user);
 
-    const surveys = await Survey.find({ user: id });
+    const surveys = await Survey.find({ user: id }).sort({ createdAt: -1 });
     //  const surveys = await Survey.find();
 
     //  console.log(surveys.length);
@@ -155,7 +155,7 @@ router.get("/api/surveys", async (req, res) => {
         { minAge: { $lte: user.age } },
         { $or: [{ genderSpecific: "all" }, { genderSpecific: user.gender }] },
       ],
-    });
+    }).sort({ createdAt: -1 });
     //  const surveys = await Survey.find();
 
     //  console.log(surveys.length);

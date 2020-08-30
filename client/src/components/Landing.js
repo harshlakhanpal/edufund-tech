@@ -11,6 +11,7 @@ const Landing = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        alignSelf: "center",
       }}
     >
       {" "}
