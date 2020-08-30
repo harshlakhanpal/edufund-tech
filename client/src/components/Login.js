@@ -28,7 +28,7 @@ const Login = () => {
       if (data.error) {
         toast.error(data.error, {
           position: "top-center",
-          autoClose: 1500,
+          autoClose: 3500,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: false,
@@ -37,7 +37,7 @@ const Login = () => {
       } else {
         toast.success("Login successful!", {
           position: "top-center",
-          autoClose: 1500,
+          autoClose: 3500,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: false,
@@ -75,14 +75,14 @@ const Login = () => {
         placeholder="Enter your password"
       />
       <br />
-      <span onClick={() => history.push("/register")} className="link">
-        Not a member? Register here.
-      </span>
-      <br />
 
       <button className="btn" onClick={handleLogin}>
         Login
       </button>
+      <br />
+      <span onClick={() => history.push("/register")} className="link">
+        Not a member? Register here.
+      </span>
       <br />
     </div>
   );

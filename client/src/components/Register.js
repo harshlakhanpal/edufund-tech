@@ -44,7 +44,7 @@ const Register = () => {
         //   console.log(data.error);
         toast.error(data.error, {
           position: "top-center",
-          autoClose: 1500,
+          autoClose: 3500,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: false,
@@ -53,7 +53,7 @@ const Register = () => {
       } else {
         toast.success("Registration successful!", {
           position: "top-center",
-          autoClose: 1500,
+          autoClose: 3500,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: false,
@@ -144,13 +144,13 @@ const Register = () => {
         <span style={{ fontSize: "1.20rem" }}>Register as coordinator</span>
       </div>
       <br />
-      <span onClick={() => history.push("/login")} className="link">
-        Already a member ? Login here
-      </span>
-      <br />
       <button className="btn" onClick={handleRegister}>
         Register
       </button>
+      <br />
+      <span onClick={() => history.push("/login")} className="link">
+        Already a member ? Login here
+      </span>
       <br />
     </div>
   );

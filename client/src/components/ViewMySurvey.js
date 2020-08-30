@@ -32,7 +32,7 @@ const ViewMySurvey = () => {
       await setSurvey(survey);
       toast.success("Response deleted successfully!", {
         position: "top-center",
-        autoClose: 1500,
+        autoClose: 3500,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,

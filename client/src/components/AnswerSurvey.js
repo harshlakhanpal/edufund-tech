@@ -30,7 +30,7 @@ const AnswerSurvey = () => {
     if (body.trim() === "") {
       toast.error("Cannot submit empty response", {
         position: "top-center",
-        autoClose: 1500,
+        autoClose: 3500,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,
@@ -50,7 +50,7 @@ const AnswerSurvey = () => {
       if (data.error) {
         toast.error(data.error, {
           position: "top-center",
-          autoClose: 1500,
+          autoClose: 3500,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: false,
@@ -59,7 +59,7 @@ const AnswerSurvey = () => {
       } else {
         toast.success("Response submitted successfully!", {
           position: "top-center",
-          autoClose: 1500,
+          autoClose: 3500,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: false,

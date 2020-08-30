@@ -58,9 +58,7 @@ const App = () => {
       <ToastContainer
         style={{
           textAlign: "center",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          fontSize: "1.5rem",
         }}
       />
     </div>

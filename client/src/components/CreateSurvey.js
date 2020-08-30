@@ -33,7 +33,7 @@ const CreateSurvey = () => {
       if (data.error) {
         toast.error(data.error, {
           position: "top-center",
-          autoClose: 1500,
+          autoClose: 3500,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: false,
@@ -42,7 +42,7 @@ const CreateSurvey = () => {
       } else {
         toast.success("Survey created successfully!", {
           position: "top-center",
-          autoClose: 1500,
+          autoClose: 3500,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: false,
