@@ -27,7 +27,12 @@ const Header = () => {
               location.pathname !== "/home" ? history.push("/home") : null
             }
           >
-            <img src={homeicon} alt="home" className="icon" />
+            <img
+              style={{ height: "1.5rem", width: "1.5rem" }}
+              src={homeicon}
+              alt="home"
+              className="icon"
+            />
           </span>
           <span
             style={{ marginRight: "1rem" }}
@@ -36,7 +41,12 @@ const Header = () => {
               history.push("/login");
             }}
           >
-            <img src={logouticon} alt="logout" className="icon" />
+            <img
+              style={{ height: "1.5rem", width: "1.5rem" }}
+              src={logouticon}
+              alt="logout"
+              className="icon"
+            />
           </span>
         </div>
       )}

@@ -29,9 +29,13 @@ const App = () => {
 
   return (
     <div className="app">
-      {loading && <Loader />}
       <Header />
       <div className="content">
+        {loading && (
+          <div className="loader-container">
+            <div className="loader" />
+          </div>
+        )}
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Login} />

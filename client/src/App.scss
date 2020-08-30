@@ -1,22 +1,3 @@
-html body #root {
-  .spinner-container {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    left: 0;
-    top: 0;
-    background: rgba($color: #fff, $alpha: 0.3);
-    z-index: 1000;
-    .spinner {
-      position: absolute;
-      top: calc(50% - 18px);
-      left: calc(50% - 18px);
-
-      height: 36px;
-      width: 36px;
-    }
-  }
-}
 .app {
   position: relative;
   display: flex;
@@ -203,6 +184,8 @@ html body #root {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  width: 50%;
+  margin: auto;
   .comment-btn {
     width: 20%;
     align-self: center;
@@ -213,21 +196,6 @@ html body #root {
   width: 1.4rem;
   cursor: pointer;
   fill: blue;
-}
-
-.loader-container {
-  position: absolute;
-  height: 92%;
-  width: 100%;
-  left: 0;
-  top: 8%;
-  background: rgba($color: #fff, $alpha: 0.3);
-  z-index: 1000;
-  .loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
 
 .link {
@@ -243,4 +211,36 @@ h1 {
 
 textarea {
   resize: none;
+}
+
+.loader-container {
+  position: fixed;
+  background: white;
+  z-index: 999;
+  width: 95%;
+  height: 92%;
+  top: 9.2%;
+}
+
+.loader {
+  position: fixed;
+  top: 40%;
+  margin: auto;
+  left: 35%;
+  z-index: 1000;
+  border: 1.6rem solid lightgrey; /* Light grey */
+  border-top: 1.6rem solid #4265e2; /* Blue */
+  border-radius: 50%;
+  width: 12rem;
+  height: 12rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
